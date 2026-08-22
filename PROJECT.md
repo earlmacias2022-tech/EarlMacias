@@ -38,3 +38,11 @@ Generic AI-looking layouts, excessive gradients, flashy animation, walls of text
 
 ## Current Decisions
 Keep the site as one self-contained `index.html`. Highlight HTML/CSS, JavaScript, C/C#, SQL/databases, Git/GitHub, and UI/UX. Showcase 3–5 strong projects. Use the supplied visual reference as inspiration while keeping the portfolio original. Replace placeholder contact email, portrait, and project content when the user provides the real details.
+
+## Motion & Design Revisions (2026-08)
+- Removed section eyebrow labels (`/ABOUT` style). Headings carry their own weight.
+- Removed decorative gradients (cursor-follow blob, portrait glow). Depth comes from offset soft shadows instead.
+- Hero portrait replaced by an animated SVG monogram medallion labeled "Portrait coming soon"; swap in a real cutout photo later by replacing the `<svg>` inside `.medallion` with an `<img>`.
+- Full motion pass: scroll progress bar, parallax ghost headings, masked line-by-line headline reveals, per-section entrance choreography, skills marquee, count-up stat, tilt cards, magnetic buttons. All disabled under `prefers-reduced-motion`.
+- Themed browser surfaces: custom scrollbar, text selection color, focus-visible rings.
+- Display face is Space Grotesk (Google Fonts) with Inter for body copy.
