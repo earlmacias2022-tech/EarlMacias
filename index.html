@@ -5,12 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Earl Macias — IT student and developer. Websites, desktop systems, and databases that work.">
   <title>Earl Macias | Software Developer</title>
-   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=Inter:wght@400;500;600;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 
+  <style>
+    /* Project preview controls */
+    .workVisual {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .workVisual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      z-index: 1;
+    }
+
+    .workVisual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, .28), transparent 45%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .workVisual .projectLink {
+      position: relative;
+      z-index: 4;
+      margin: 0;
+      transform: none;
+    }
+
+    .workVisual .projectNumber {
+      position: relative;
+      z-index: 4;
+      margin-left: auto;
+    }
+
+    .workVisual .projectLink:hover {
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 800px) {
+      .workVisual {
+        min-height: 280px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -103,7 +156,7 @@
           </div>
 
           <div class="heroSocials" aria-label="Social links">
-            <a class="heroSocial" href="https://github.com/earlmacias2022-tech" target="_blank" aria-label="GitHub placeholder">
+            <a class="heroSocial" href="https://github.com/earlmacias2022-tech" target="_blank" aria-label="GitHub">
               <svg viewBox="0 0 24 24">
                 <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 3.7 5.1 5.1 0 0 0 19.2 0S18 0 15.5 1.7a13.4 13.4 0 0 0-7 0C6 0 4.8 0 4.8 0a5.1 5.1 0 0 0-.1 3.7A5.5 5.5 0 0 0 3.2 7.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 9 18v4"/>
                 <path d="M9 18c-4.5 2-5-2-7-2"/>
@@ -128,7 +181,7 @@
               </svg>
             </a>
 
-            <a class="heroSocial" href="https://www.facebook.com/earljustinekent.macias.3" target="_blank" aria-label="Email placeholder">
+            <a class="heroSocial" href="https://www.facebook.com/earljustinekent.macias.3" target="_blank" aria-label="Facebook">
               <svg viewBox="0 0 24 24">
                 <rect x="3" y="5" width="18" height="14" rx="2"/>
                 <path d="m3 7 9 6 9-6"/>
@@ -298,6 +351,7 @@
         <div class="ghost" data-parallax="0.07">WORK</div>
 
         <div class="projects">
+          <!-- Project 01 -->
           <article class="work tilt" data-reveal="left">
             <div class="workInfo">
               <div>
@@ -316,12 +370,22 @@
             </div>
 
             <div class="workVisual">
-                <img src="./assets/portfolio.png" alt="portfolio-pic">
-              <strong>PORTFOLIO</strong>
-              <span>01</span>
+              <img src="./assets/portfolio.png" alt="Preview of Earl Macias portfolio website">
+
+              <a
+                class="projectLink pill"
+                href="https://earlmacias.vercel.app"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Live Demo ↗
+              </a>
+
+              <span class="projectNumber">01</span>
             </div>
           </article>
 
+          <!-- Project 02 -->
           <article class="work tilt" data-reveal="right">
             <div class="workInfo">
               <div>
@@ -340,11 +404,21 @@
             </div>
 
             <div class="workVisual">
-              <strong>BUSINESS SYSTEM</strong>
-              <span>02</span>
+              <!-- Upload the project screenshot here later:
+                   assets/management-system.png -->
+              <a
+                class="projectLink pill"
+                href="#"
+                aria-label="View Management System project"
+              >
+                View Project ↗
+              </a>
+
+              <span class="projectNumber">02</span>
             </div>
           </article>
 
+          <!-- Project 03 -->
           <article class="work tilt" data-reveal="left">
             <div class="workInfo">
               <div>
@@ -363,8 +437,17 @@
             </div>
 
             <div class="workVisual">
-              <strong>SALES SYSTEM</strong>
-              <span>03</span>
+              <!-- Upload the project screenshot here later:
+                   assets/inventory-system.png -->
+              <a
+                class="projectLink pill"
+                href="#"
+                aria-label="View Sales and Inventory project"
+              >
+                View Project ↗
+              </a>
+
+              <span class="projectNumber">03</span>
             </div>
           </article>
         </div>
