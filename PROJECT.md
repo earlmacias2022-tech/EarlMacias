@@ -43,6 +43,7 @@ Keep the site as one self-contained `index.html`. Highlight HTML/CSS, JavaScript
 - Removed section eyebrow labels (`/ABOUT` style). Headings carry their own weight.
 - Removed decorative gradients (cursor-follow blob, portrait glow). Depth comes from offset soft shadows instead.
 - Hero portrait replaced by an animated SVG monogram medallion labeled "Portrait coming soon"; swap in a real cutout photo later by replacing the `<svg>` inside `.medallion` with an `<img>`.
+- Real portrait `assets/earl-macias.png` (uploaded by Earl) now sits inside the medallion frame, over the paper circle, with the rotating ring behind it.
 - Full motion pass: scroll progress bar, parallax ghost headings, masked line-by-line headline reveals, per-section entrance choreography, skills marquee, count-up stat, tilt cards, magnetic buttons. All disabled under `prefers-reduced-motion`.
 - Themed browser surfaces: custom scrollbar, text selection color, focus-visible rings.
 - Display face is Space Grotesk (Google Fonts) with Inter for body copy.
