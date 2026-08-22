@@ -1,1 +1,430 @@
-<h1>Website in progress.</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Earl Macias — IT student and developer portfolio.">
+  <title>Earl Macias — IT Student & Developer</title>
+  <style>
+    :root {
+      --bg: #ececea;
+      --paper: #fbfbf8;
+      --ink: #111111;
+      --muted: #666662;
+      --line: #d7d7d1;
+      --dark: #1a1a1a;
+      --accent: #b8ff63;
+      --radius: 18px;
+      --shadow: 0 18px 50px rgba(17, 17, 17, .09);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    ::selection { background: var(--ink); color: #fff; }
+
+    .shell {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 32px auto;
+      background: var(--paper);
+      border: 1px solid rgba(17,17,17,.16);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 34px;
+      border-bottom: 1px solid var(--line);
+    }
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .72rem;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      white-space: nowrap;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #48b866; }
+    .nav-links { display: flex; gap: 28px; font-size: .78rem; }
+    .nav-links a { color: var(--muted); transition: color .2s ease; }
+    .nav-links a:hover { color: var(--ink); }
+    .menu-toggle { display: none; border: 0; background: none; font: inherit; cursor: pointer; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: var(--dark);
+      color: #fff;
+      font-size: .76rem;
+      border: 1px solid var(--dark);
+      transition: transform .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: #000; }
+    .button.light { background: #fff; color: var(--ink); border-color: var(--line); }
+
+    /* SECTION: HERO */
+    .hero {
+      min-height: 650px;
+      padding: 70px 54px 42px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    .hero-name {
+      margin: 0;
+      font-size: clamp(4.4rem, 12vw, 9.2rem);
+      line-height: .82;
+      letter-spacing: -.065em;
+      font-weight: 800;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-name span { display: block; }
+    .hero-name .outline {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--ink);
+    }
+    .hero-lower {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 28px;
+      align-items: end;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-copy { max-width: 360px; }
+    .hero-copy h2 { margin: 0 0 10px; font-size: 1.35rem; letter-spacing: -.03em; }
+    .hero-copy p { margin: 0 0 22px; color: var(--muted); max-width: 42ch; }
+    .portrait {
+      width: 230px;
+      height: 280px;
+      justify-self: center;
+      background: #d9d9d5;
+      border: 1px solid #c7c7c1;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .portrait::before {
+      content: "EM";
+      font-size: 5rem;
+      font-weight: 800;
+      letter-spacing: -.08em;
+      color: #b8b8b3;
+    }
+    .portrait::after {
+      content: "PHOTO / REPLACE LATER";
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      font-size: .58rem;
+      letter-spacing: .12em;
+      color: #666;
+    }
+    .hero-side { justify-self: end; text-align: right; }
+    .hero-side p { margin: 0 0 12px; color: var(--muted); font-size: .76rem; }
+    .hero-side a { display: block; margin-top: 9px; font-size: .78rem; }
+    .hero-side a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    /* SECTION: ABOUT */
+    .section { padding: 100px 54px; border-top: 1px solid var(--line); }
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: .9;
+      letter-spacing: -.055em;
+      text-transform: uppercase;
+    }
+    .section-heading p { margin: 0; max-width: 40ch; color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 70px; }
+    .about-copy { font-size: clamp(1.35rem, 2.6vw, 2.25rem); line-height: 1.15; letter-spacing: -.035em; max-width: 30ch; }
+    .about-facts { border-top: 1px solid var(--line); }
+    .fact { padding: 18px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; font-size: .85rem; }
+    .fact span:first-child { color: var(--muted); }
+
+    /* SECTION: SKILLS */
+    .skills-list { border-top: 1px solid var(--ink); }
+    .skill {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: clamp(1.5rem, 3vw, 2.6rem);
+      letter-spacing: -.045em;
+    }
+    .skill small { font-size: .7rem; letter-spacing: .02em; color: var(--muted); }
+
+    /* SECTION: PROJECTS */
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px; }
+    .filter {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 8px 13px;
+      cursor: pointer;
+      font: inherit;
+      font-size: .72rem;
+    }
+    .filter.active, .filter:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .project {
+      border: 1px solid var(--line);
+      background: #fff;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .project:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(17,17,17,.08); }
+    .project-media {
+      aspect-ratio: 16 / 9;
+      background: #202020;
+      color: #fff;
+      padding: 24px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .project-media strong { font-size: clamp(1.8rem, 4vw, 3rem); line-height: .9; letter-spacing: -.05em; }
+    .project-media span { font-size: .7rem; border: 1px solid rgba(255,255,255,.35); padding: 6px 9px; border-radius: 999px; }
+    .project:nth-child(2) .project-media { background: #deded9; color: var(--ink); }
+    .project:nth-child(3) .project-media { background: #d4d4ce; color: var(--ink); }
+    .project:nth-child(4) .project-media { background: #282828; color: #fff; }
+    .project-info { padding: 20px; }
+    .project-info h3 { margin: 0 0 7px; font-size: 1.1rem; letter-spacing: -.025em; }
+    .project-info p { margin: 0 0 15px; color: var(--muted); font-size: .84rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { padding: 5px 8px; border: 1px solid var(--line); border-radius: 999px; font-size: .65rem; color: var(--muted); }
+
+    /* SECTION: CONTACT */
+    .contact {
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+      padding: 110px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: "LET'S BUILD";
+      position: absolute;
+      inset: 20px 0 auto;
+      font-size: clamp(5rem, 15vw, 12rem);
+      line-height: 1;
+      letter-spacing: -.08em;
+      font-weight: 800;
+      color: rgba(255,255,255,.035);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .contact h2 { position: relative; margin: 0 auto 18px; max-width: 850px; font-size: clamp(3rem, 7vw, 6.8rem); line-height: .88; letter-spacing: -.065em; }
+    .contact p { position: relative; max-width: 50ch; margin: 0 auto 28px; color: #bdbdb8; }
+    .contact .button { position: relative; background: #fff; color: var(--ink); border-color: #fff; }
+    .socials { position: relative; margin-top: 70px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+    .socials a { padding: 9px 14px; border: 1px solid #454545; border-radius: 999px; font-size: .72rem; color: #d7d7d2; }
+    .socials a:hover { border-color: #fff; color: #fff; }
+
+    /* SECTION: FOOTER */
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 18px 34px; font-size: .7rem; color: var(--muted); border-top: 1px solid var(--line); }
+
+    @media (max-width: 800px) {
+      .shell { width: 100%; margin: 0; border-left: 0; border-right: 0; }
+      .nav { padding: 18px 20px; }
+      .nav-links, .nav > .button { display: none; }
+      .menu-toggle { display: block; }
+      .nav.open .nav-links { display: flex; position: absolute; top: 70px; left: 16px; right: 16px; padding: 16px; background: #fff; border: 1px solid var(--line); flex-direction: column; z-index: 10; box-shadow: var(--shadow); }
+      .hero { min-height: 700px; padding: 55px 24px 32px; }
+      .hero-name { font-size: clamp(3.8rem, 18vw, 7rem); }
+      .hero-lower { grid-template-columns: 1fr; gap: 32px; }
+      .portrait { width: 180px; height: 220px; justify-self: start; }
+      .hero-side { justify-self: start; text-align: left; }
+      .section { padding: 72px 24px; }
+      .section-heading, .about-grid { grid-template-columns: 1fr; display: grid; gap: 24px; }
+      .projects { grid-template-columns: 1fr; }
+      .contact { padding: 85px 24px 65px; }
+      footer { padding: 16px 20px; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <!-- SECTION: NAVIGATION -->
+    <header class="nav" id="top">
+      <div class="availability"><span class="dot"></span> Available for new projects</div>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="button" href="#contact">Let's talk ↗</a>
+    </header>
+
+    <!-- SECTION: HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 class="hero-name" id="hero-title"><span class="outline">Earl</span><span>Macias</span></h1>
+      <div class="hero-lower">
+        <div class="hero-copy">
+          <h2>IT Student &amp; Developer</h2>
+          <p>I build practical digital experiences while growing my skills across web development, programming, databases, and interface design.</p>
+          <a class="button" href="#projects">View my projects ↗</a>
+        </div>
+        <div class="portrait" role="img" aria-label="Portrait placeholder for Earl Macias"></div>
+        <div class="hero-side">
+          <p>Currently focused on</p>
+          <a href="#skills">Web development ↗</a>
+          <a href="#skills">Programming ↗</a>
+          <a href="#skills">Databases ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: ABOUT -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <h2 id="about-title">About</h2>
+        <p>A student portfolio built around real practice, useful systems, and steady improvement.</p>
+      </div>
+      <div class="about-grid">
+        <p class="about-copy">I’m an IT student who enjoys turning ideas into working interfaces and software. I care about clear layouts, useful functionality, and code I can understand and improve.</p>
+        <div class="about-facts">
+          <div class="fact"><span>Role</span><strong>IT Student &amp; Developer</strong></div>
+          <div class="fact"><span>Focus</span><strong>Web &amp; Software Development</strong></div>
+          <div class="fact"><span>Tools</span><strong>HTML · CSS · JS · C · C# · SQL</strong></div>
+          <div class="fact"><span>Workflow</span><strong>Build · Test · Improve</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: SKILLS -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="section-heading">
+        <h2 id="skills-title">Skills</h2>
+        <p>The tools I use to turn coursework and ideas into working projects.</p>
+      </div>
+      <div class="skills-list">
+        <div class="skill"><span>HTML / CSS</span><small>01</small></div>
+        <div class="skill"><span>JavaScript</span><small>02</small></div>
+        <div class="skill"><span>C / C#</span><small>03</small></div>
+        <div class="skill"><span>SQL &amp; Databases</span><small>04</small></div>
+        <div class="skill"><span>Git &amp; GitHub</span><small>05</small></div>
+        <div class="skill"><span>UI / UX</span><small>06</small></div>
+      </div>
+    </section>
+
+    <!-- SECTION: PROJECTS -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <h2 id="projects-title">Selected Work</h2>
+        <p>A small collection of projects. Replace the placeholders with your strongest finished work as you build your portfolio.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Project filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="web">Web</button>
+        <button class="filter" data-filter="system">Systems</button>
+        <button class="filter" data-filter="practice">Practice</button>
+      </div>
+      <div class="projects">
+        <article class="project" data-category="web">
+          <div class="project-media"><strong>WEB<br>PROJECT</strong><span>01</span></div>
+          <div class="project-info"><h3>Portfolio Website</h3><p>A responsive personal site focused on clear presentation, useful navigation, and lightweight front-end code.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div></div>
+        </article>
+        <article class="project" data-category="system">
+          <div class="project-media"><strong>BUSINESS<br>SYSTEM</strong><span>02</span></div>
+          <div class="project-info"><h3>Management System</h3><p>A database-backed system concept designed to organize records and simplify everyday workflows.</p><div class="tags"><span class="tag">C#</span><span class="tag">SQL</span><span class="tag">UI</span></div></div>
+        </article>
+        <article class="project" data-category="system">
+          <div class="project-media"><strong>SALES<br>SYSTEM</strong><span>03</span></div>
+          <div class="project-info"><h3>Sales &amp; Inventory</h3><p>A practical system project focused on product records, sales workflows, and inventory management.</p><div class="tags"><span class="tag">C#</span><span class="tag">Database</span><span class="tag">Desktop UI</span></div></div>
+        </article>
+        <article class="project" data-category="practice">
+          <div class="project-media"><strong>FRONT-END<br>LAB</strong><span>04</span></div>
+          <div class="project-info"><h3>Web Development Practice</h3><p>Small experiments for improving semantic HTML, responsive CSS, JavaScript interactions, and interface structure.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION: CTA -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Have a project in mind?</h2>
+      <p>Let’s talk about an idea, a school project, or an opportunity to build something useful.</p>
+      <a class="button" href="mailto:your-email@example.com">Contact me ↗</a>
+      <div class="socials" aria-label="Social links">
+        <a href="https://github.com/earlmacias2022-tech/EarlMacias" target="_blank" rel="noreferrer">GitHub ↗</a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </section>
+
+    <!-- SECTION: FOOTER -->
+    <footer>
+      <span>© 2026 Earl Macias</span>
+      <span>Built with HTML, CSS &amp; JavaScript.</span>
+    </footer>
+  </main>
+
+  <script>
+    const nav = document.querySelector('.nav');
+    const menuToggle = document.querySelector('.menu-toggle');
+    menuToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', open);
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const filters = document.querySelectorAll('.filter');
+    const projects = document.querySelectorAll('.project');
+    filters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        filters.forEach(item => item.classList.remove('active'));
+        filter.classList.add('active');
+        const category = filter.dataset.filter;
+        projects.forEach(project => {
+          project.hidden = category !== 'all' && project.dataset.category !== category;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
