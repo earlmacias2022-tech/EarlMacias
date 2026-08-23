@@ -12,33 +12,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 
   <style>
-    /* Project preview controls */
+    /* Project previews: one consistent frame while keeping each screenshot fully visible. */
     .workVisual {
       position: relative;
       overflow: hidden;
       isolation: isolate;
+      aspect-ratio: 16 / 10;
+      min-height: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 20px;
+      background: #21211f;
     }
 
     .workVisual img {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
+      inset: 12px;
+      width: calc(100% - 24px);
+      height: calc(100% - 24px);
+      max-width: none;
+      max-height: none;
       object-fit: contain;
       object-position: center;
       display: block;
       z-index: 1;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,.14));
+      transition: transform .65s var(--ease), filter .65s var(--ease);
     }
 
     .workVisual::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, .28), transparent 45%);
       z-index: 2;
       pointer-events: none;
+      background: linear-gradient(to top, rgba(0,0,0,.42), transparent 34%);
+    }
+
+    .work:hover .workVisual img {
+      transform: scale(1.025);
+      filter: drop-shadow(0 16px 22px rgba(0,0,0,.2));
     }
 
     .workVisual .projectLink {
@@ -46,21 +60,75 @@
       z-index: 4;
       margin: 0;
       transform: none;
+      white-space: nowrap;
     }
 
     .workVisual .projectNumber {
       position: relative;
       z-index: 4;
       margin-left: auto;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: .64rem;
+      color: #fff;
     }
 
     .workVisual .projectLink:hover {
       transform: translateY(-3px);
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
+      .work {
+        grid-template-columns: minmax(230px, .8fr) minmax(0, 1.2fr);
+        gap: 24px;
+      }
+
+      .work h3 {
+        font-size: clamp(2rem, 5vw, 3.4rem);
+      }
+
       .workVisual {
-        min-height: 280px;
+        aspect-ratio: 16 / 11;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .work {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .workVisual {
+        aspect-ratio: 4 / 3;
+        width: 100%;
+        min-height: 0;
+      }
+
+      .workVisual img {
+        inset: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .workVisual {
+        aspect-ratio: 4 / 3;
+        padding: 14px;
+      }
+
+      .workVisual::after {
+        background: linear-gradient(to top, rgba(0,0,0,.5), transparent 42%);
+      }
+
+      .workVisual .projectLink,
+      .workVisual .projectNumber {
+        font-size: .62rem;
+      }
+
+      .workVisual .projectLink {
+        padding: 10px 13px;
       }
     }
   </style>
@@ -76,9 +144,7 @@
         Available for new projects
       </div>
 
-      <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false">
-        Menu
-      </button>
+      <button class="menu" id="menuBtn" aria-label="Open navigation" aria-expanded="false">Menu</button>
 
       <nav class="navlinks" aria-label="Primary">
         <a href="#home">Home</a>
@@ -110,12 +176,8 @@
 
         <div class="heroInner">
           <h1>
-            <span class="lineMask">
-              <span class="lineIn outline">Earl</span>
-            </span>
-            <span class="lineMask">
-              <span class="lineIn">Macias</span>
-            </span>
+            <span class="lineMask"><span class="lineIn outline">Earl</span></span>
+            <span class="lineMask"><span class="lineIn">Macias</span></span>
           </h1>
 
           <div class="heroBody">
@@ -132,7 +194,7 @@
               </div>
             </div>
 
-            <div class="medallionFrame" aria-label="Monogram placeholder for portrait">
+            <div class="medallionFrame" aria-label="Portrait of Earl Macias">
               <div class="medallion" id="medallion">
                 <svg viewBox="0 0 400 400" role="img" aria-label="Decorative ring">
                   <g class="ringSpin">
@@ -142,7 +204,6 @@
                   </g>
                   <circle cx="200" cy="200" r="160" fill="#fbfbf8" stroke="#111" stroke-width="1.5"/>
                 </svg>
-
                 <img class="medallionImg" src="assets/earl-macias.png" alt="Portrait of Earl Macias">
               </div>
             </div>
@@ -156,36 +217,17 @@
           </div>
 
           <div class="heroSocials" aria-label="Social links">
-            <a class="heroSocial" href="https://github.com/earlmacias2022-tech" target="_blank" aria-label="GitHub">
-              <svg viewBox="0 0 24 24">
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 3.7 5.1 5.1 0 0 0 19.2 0S18 0 15.5 1.7a13.4 13.4 0 0 0-7 0C6 0 4.8 0 4.8 0a5.1 5.1 0 0 0-.1 3.7A5.5 5.5 0 0 0 3.2 7.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 9 18v4"/>
-                <path d="M9 18c-4.5 2-5-2-7-2"/>
-              </svg>
+            <a class="heroSocial" href="https://github.com/earlmacias2022-tech" target="_blank" rel="noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 3.7 5.1 5.1 0 0 0 19.2 0S18 0 15.5 1.7a13.4 13.4 0 0 0-7 0C6 0 4.8 0 4.8 0a5.1 5.1 0 0 0-.1 3.7A5.5 5.5 0 0 0 3.2 7.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 9 18v4"/><path d="M9 18c-4.5 2-5-2-7-2"/></svg>
             </a>
-
             <a class="heroSocial" href="#" aria-label="Instagram placeholder">
-              <svg viewBox="0 0 24 24">
-                <rect x="3" y="3" width="18" height="18" rx="5"/>
-                <circle cx="12" cy="12" r="4"/>
-                <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/>
-              </svg>
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
             </a>
-
             <a class="heroSocial" href="#" aria-label="LinkedIn placeholder">
-              <svg viewBox="0 0 24 24">
-                <path d="M6 9v12"/>
-                <path d="M6 6.2v.1"/>
-                <path d="M10 21V9"/>
-                <path d="M10 13a4 4 0 0 1 8 0v8"/>
-                <path d="M2.5 9h7"/>
-              </svg>
+              <svg viewBox="0 0 24 24"><path d="M6 9v12"/><path d="M6 6.2v.1"/><path d="M10 21V9"/><path d="M10 13a4 4 0 0 1 8 0v8"/><path d="M2.5 9h7"/></svg>
             </a>
-
-            <a class="heroSocial" href="https://www.facebook.com/earljustinekent.macias.3" target="_blank" aria-label="Facebook">
-              <svg viewBox="0 0 24 24">
-                <rect x="3" y="5" width="18" height="14" rx="2"/>
-                <path d="m3 7 9 6 9-6"/>
-              </svg>
+            <a class="heroSocial" href="https://www.facebook.com/earljustinekent.macias.3" target="_blank" rel="noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             </a>
           </div>
 
@@ -198,37 +240,17 @@
         <div class="ghost" data-parallax="0.08">ABOUT</div>
 
         <h2 class="intro" data-lines>
-          <span class="lineMask">
-            <span class="lineIn">I turn ideas into</span>
-          </span>
-          <span class="lineMask">
-            <span class="lineIn">working software.</span>
-          </span>
-          <span class="lineMask">
-            <span class="lineIn">Websites, school systems,</span>
-          </span>
-          <span class="lineMask">
-            <span class="lineIn">and small tools that help.</span>
-          </span>
+          <span class="lineMask"><span class="lineIn">I turn ideas into</span></span>
+          <span class="lineMask"><span class="lineIn">working software.</span></span>
+          <span class="lineMask"><span class="lineIn">Websites, school systems,</span></span>
+          <span class="lineMask"><span class="lineIn">and small tools that help.</span></span>
         </h2>
 
         <div class="facts" data-stagger>
-          <div class="fact">
-            <span>Role</span>
-            <strong>IT Student &amp; Developer</strong>
-          </div>
-          <div class="fact">
-            <span>Stack</span>
-            <strong>HTML · CSS · JavaScript · C · C# · SQL</strong>
-          </div>
-          <div class="fact">
-            <span>Learning next</span>
-            <strong>Cleaner SQL and more JavaScript</strong>
-          </div>
-          <div class="fact">
-            <span>Workflow</span>
-            <strong>Build · Test · Improve</strong>
-          </div>
+          <div class="fact"><span>Role</span><strong>IT Student &amp; Developer</strong></div>
+          <div class="fact"><span>Stack</span><strong>HTML · CSS · JavaScript · C · C# · SQL</strong></div>
+          <div class="fact"><span>Learning next</span><strong>Cleaner SQL and more JavaScript</strong></div>
+          <div class="fact"><span>Workflow</span><strong>Build · Test · Improve</strong></div>
         </div>
       </section>
 
@@ -237,78 +259,22 @@
         <div class="ghost" data-parallax="0.06">SKILLS</div>
 
         <div class="services" data-stagger>
-          <div class="service">
-            <div>
-              <strong>WEB DEVELOPMENT</strong>
-              <small>Responsive sites and interfaces</small>
-            </div>
-            <span class="arrow">↗</span>
-          </div>
-
-          <div class="service">
-            <div>
-              <strong>PROGRAMMING</strong>
-              <small>C, C#, and problem solving</small>
-            </div>
-            <span class="arrow">↗</span>
-          </div>
-
-          <div class="service">
-            <div>
-              <strong>DATABASES</strong>
-              <small>SQL schemas and queries</small>
-            </div>
-            <span class="arrow">↗</span>
-          </div>
-
-          <div class="service">
-            <div>
-              <strong>UI / UX</strong>
-              <small>Layouts people can actually use</small>
-            </div>
-            <span class="arrow">↗</span>
-          </div>
-
-          <div class="service">
-            <div>
-              <strong>SYSTEM DEVELOPMENT</strong>
-              <small>Desktop tools for daily work</small>
-            </div>
-            <span class="arrow">↗</span>
-          </div>
+          <div class="service"><div><strong>WEB DEVELOPMENT</strong><small>Responsive sites and interfaces</small></div><span class="arrow">↗</span></div>
+          <div class="service"><div><strong>PROGRAMMING</strong><small>C, C#, and problem solving</small></div><span class="arrow">↗</span></div>
+          <div class="service"><div><strong>DATABASES</strong><small>SQL schemas and queries</small></div><span class="arrow">↗</span></div>
+          <div class="service"><div><strong>UI / UX</strong><small>Layouts people can actually use</small></div><span class="arrow">↗</span></div>
+          <div class="service"><div><strong>SYSTEM DEVELOPMENT</strong><small>Desktop tools for daily work</small></div><span class="arrow">↗</span></div>
         </div>
 
         <div class="skillsMeta">
-          <div class="bigCount" data-reveal="scale">
-            <span data-count="9">0</span>
-            <sup>tools I reach for daily</sup>
-          </div>
-
-          <small>
-            Scroll the strip below every one of them shows up in my projects.
-          </small>
+          <div class="bigCount" data-reveal="scale"><span data-count="9">0</span><sup>tools I reach for daily</sup></div>
+          <small>Scroll the strip below every one of them shows up in my projects.</small>
         </div>
 
         <div class="marquee" data-reveal aria-hidden="true">
           <div class="marqueeTrack">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JAVASCRIPT</span>
-            <span>C</span>
-            <span>C#</span>
-            <span>SQL</span>
-            <span>GIT</span>
-            <span>GITHUB</span>
-            <span>UI / UX</span>
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JAVASCRIPT</span>
-            <span>C</span>
-            <span>C#</span>
-            <span>SQL</span>
-            <span>GIT</span>
-            <span>GITHUB</span>
-            <span>UI / UX</span>
+            <span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>C</span><span>C#</span><span>SQL</span><span>GIT</span><span>GITHUB</span><span>UI / UX</span>
+            <span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>C</span><span>C#</span><span>SQL</span><span>GIT</span><span>GITHUB</span><span>UI / UX</span>
           </div>
         </div>
       </section>
@@ -316,33 +282,12 @@
       <!-- JOURNEY -->
       <section class="section dark" id="journey">
         <div class="ghost" data-parallax="0.05">JOURNEY</div>
-
         <div class="timeline" data-stagger>
-          <div class="row">
-            <strong>BSIT · Information Technology</strong>
-            <span>Current</span>
-            <em>Academic foundation</em>
-          </div>
-          <div class="row">
-            <strong>Web Development</strong>
-            <span>Current</span>
-            <em>HTML · CSS · JavaScript</em>
-          </div>
-          <div class="row">
-            <strong>Software Development</strong>
-            <span>Current</span>
-            <em>C · C# · desktop systems</em>
-          </div>
-          <div class="row">
-            <strong>Database Systems</strong>
-            <span>Current</span>
-            <em>SQL · data-driven applications</em>
-          </div>
-          <div class="row">
-            <strong>Personal Projects</strong>
-            <span>Ongoing</span>
-            <em>Build · Test · Improve</em>
-          </div>
+          <div class="row"><strong>BSIT · Information Technology</strong><span>Current</span><em>Academic foundation</em></div>
+          <div class="row"><strong>Web Development</strong><span>Current</span><em>HTML · CSS · JavaScript</em></div>
+          <div class="row"><strong>Software Development</strong><span>Current</span><em>C · C# · desktop systems</em></div>
+          <div class="row"><strong>Database Systems</strong><span>Current</span><em>SQL · data-driven applications</em></div>
+          <div class="row"><strong>Personal Projects</strong><span>Ongoing</span><em>Build · Test · Improve</em></div>
         </div>
       </section>
 
@@ -351,172 +296,92 @@
         <div class="ghost" data-parallax="0.07">WORK</div>
 
         <div class="projects">
-          <!-- Project 01 -->
           <article class="work tilt" data-reveal="left">
             <div class="workInfo">
               <div>
                 <span class="num">01 / WEB</span>
                 <h3>Portfolio Website</h3>
-                <p>
-                  The site you're reading. Hand-written HTML, CSS, and JavaScript with scroll animation and zero frameworks.
-                </p>
+                <p>A responsive personal portfolio built with HTML, CSS, and JavaScript, with motion, smooth navigation, and a clean editorial layout.</p>
               </div>
-
               <div class="tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
               </div>
             </div>
-
             <div class="workVisual">
-              <img src="./assets/portfolio.png" alt="Preview of Earl Macias portfolio website">
-
-              <a
-                class="projectLink pill"
-                href="https://earlmacias.vercel.app"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Live Demo ↗
-              </a>
-
+              <img src="./assets/portfolio.png" alt="Preview of Earl Macias portfolio website" loading="lazy">
+              <a class="projectLink pill" href="https://earlmacias.vercel.app" target="_blank" rel="noreferrer">Live Demo ↗</a>
               <span class="projectNumber">01</span>
             </div>
           </article>
-          
 
-          </article>
-
-          <!-- Project 02 -->
           <article class="work tilt" data-reveal="left">
             <div class="workInfo">
               <div>
                 <span class="num">02 / SYSTEM</span>
-                <h3> Attendance Management System</h3>
-                <p>
-                  A desktop app that tracks products, sales, and stock levels in one place, so nothing gets lost between shelves and spreadsheets.
-                </p>
+                <h3>Attendance Management System</h3>
+                <p>A C# desktop system for recording student attendance, organizing records, and generating attendance reports.</p>
               </div>
-
               <div class="tags">
-                <span class="tag">C#</span>
-                <span class="tag">Sql Server</span>
-                <span class="tag">Windows Form</span>
+                <span class="tag">C#</span><span class="tag">SQL Server</span><span class="tag">Windows Forms</span>
               </div>
             </div>
-
             <div class="workVisual">
-              <img src="./assets/attendancesystem.png" alt="attendance-system">
-              <a
-                class="projectLink pill"
-                href="#"
-                aria-label="View Sales and Inventory project"
-              >
-                View Project ↗
-              </a>
-
+              <img src="./assets/attendancesystem.png" alt="Preview of Attendance Management System" loading="lazy">
+              <a class="projectLink pill" href="#contact" aria-label="Ask about the Attendance Management System project">Ask About It ↗</a>
               <span class="projectNumber">02</span>
             </div>
           </article>
 
-          <!-- Project 03 -->
-         </article>
-
-          <!-- Project 03 -->
           <article class="work tilt" data-reveal="left">
             <div class="workInfo">
               <div>
                 <span class="num">03 / SYSTEM</span>
                 <h3>Barangay Management System</h3>
-                <p>
-                  A desktop app that tracks products, sales, and stock levels in one place, so nothing gets lost between shelves and spreadsheets.
-                </p>
+                <p>A desktop management system designed to organize barangay records and make everyday administrative tasks easier to handle.</p>
               </div>
-
               <div class="tags">
-                <span class="tag">C#</span>
-                <span class="tag">Sql Server</span>
-                <span class="tag">Windows Form</span>
+                <span class="tag">C#</span><span class="tag">SQL Server</span><span class="tag">Windows Forms</span>
               </div>
             </div>
-
             <div class="workVisual">
-              <img src="./assets/barangay-management-system.png" alt="barangay-system">
-              <a
-                class="projectLink pill"
-                href="#"
-                aria-label="View Sales and Inventory project"
-              >
-                View Project ↗
-              </a>
-
+              <img src="./assets/barangay-management-system.png" alt="Preview of Barangay Management System" loading="lazy">
+              <a class="projectLink pill" href="#contact" aria-label="Ask about the Barangay Management System project">Ask About It ↗</a>
               <span class="projectNumber">03</span>
             </div>
           </article>
-          <!-- Project 04 -->
+
           <article class="work tilt" data-reveal="left">
             <div class="workInfo">
               <div>
                 <span class="num">04 / WEB</span>
                 <h3>Class Optima</h3>
-                <p>
-                  A desktop app that tracks products, sales, and stock levels in one place, so nothing gets lost between shelves and spreadsheets.
-                </p>
+                <p>A web-based attendance management system for recording student attendance and keeping class records organized.</p>
               </div>
-
               <div class="tags">
-             <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">My Sql</span>
-                <span class="tag">PHP</span>
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">MySQL</span>
               </div>
             </div>
-
             <div class="workVisual">
-            <img src="./assets/classoptima.png" alt="class-optima">
-              <a
-                class="projectLink pill"
-                href="#"
-                aria-label="View Sales and Inventory project"
-              >
-                Live Demo ↗
-              </a>
-
+              <img src="./assets/classoptima.png" alt="Preview of Class Optima" loading="lazy">
+              <a class="projectLink pill" href="#contact" aria-label="Ask about the Class Optima project">Ask About It ↗</a>
               <span class="projectNumber">04</span>
             </div>
           </article>
-           </article>
 
-          <!-- Project 05 -->
           <article class="work tilt" data-reveal="left">
             <div class="workInfo">
               <div>
                 <span class="num">05 / WEB</span>
                 <h3>NonaEarl PisoWifi</h3>
-                <p>
-                  A desktop app that tracks products, sales, and stock levels in one place, so nothing gets lost between shelves and spreadsheets.
-                </p>
+                <p>A commercial web page for a Piso WiFi service, focused on presenting the offer clearly and making the service easy to understand.</p>
               </div>
-
               <div class="tags">
-                 <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
               </div>
             </div>
-
             <div class="workVisual">
-              <img src="./assets/nonaearlpisowifi.png" alt="">
-              <a
-                class="projectLink pill"
-                href="#"
-                aria-label="View Sales and Inventory project"
-              >
-                Live Demo ↗
-              </a>
-
+              <img src="./assets/nonaearlpisowifi.png" alt="Preview of NonaEarl PisoWifi commercial website" loading="lazy">
+              <a class="projectLink pill" href="#contact" aria-label="Ask about the NonaEarl PisoWifi project">Ask About It ↗</a>
               <span class="projectNumber">05</span>
             </div>
           </article>
@@ -528,12 +393,8 @@
         <div class="ghost" data-parallax="0.05">CONTACT</div>
 
         <h2 data-lines>
-          <span class="lineMask">
-            <span class="lineIn">Have a project</span>
-          </span>
-          <span class="lineMask">
-            <span class="lineIn">in mind?</span>
-          </span>
+          <span class="lineMask"><span class="lineIn">Have a project</span></span>
+          <span class="lineMask"><span class="lineIn">in mind?</span></span>
         </h2>
 
         <p data-reveal>
@@ -542,48 +403,23 @@
         </p>
 
         <div class="contactCtas" data-reveal>
-          <a class="pill-contact  magnetic" href="mailto:your-email@example.com">Contact me ↗</a>
+          <a class="pill-contact magnetic" href="mailto:your-email@example.com">Contact me ↗</a>
         </div>
 
         <div class="socials" data-reveal>
-          <a class="heroSocial" href="https://github.com/earlmacias2022-tech" target="_blank" aria-label="GitHub">
-              <svg viewBox="0 0 24 24">
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 3.7 5.1 5.1 0 0 0 19.2 0S18 0 15.5 1.7a13.4 13.4 0 0 0-7 0C6 0 4.8 0 4.8 0a5.1 5.1 0 0 0-.1 3.7A5.5 5.5 0 0 0 3.2 7.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 9 18v4"/>
-                <path d="M9 18c-4.5 2-5-2-7-2"/>
-              </svg>
-            </a>
-
-            <a class="heroSocial" href="#" aria-label="Instagram placeholder">
-              <svg viewBox="0 0 24 24">
-                <rect x="3" y="3" width="18" height="18" rx="5"/>
-                <circle cx="12" cy="12" r="4"/>
-                <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/>
-              </svg>
-            </a>
-
-            <a class="heroSocial" href="#" aria-label="LinkedIn placeholder">
-              <svg viewBox="0 0 24 24">
-                <path d="M6 9v12"/>
-                <path d="M6 6.2v.1"/>
-                <path d="M10 21V9"/>
-                <path d="M10 13a4 4 0 0 1 8 0v8"/>
-                <path d="M2.5 9h7"/>
-              </svg>
-            </a>
-
-            <a class="heroSocial" href="https://www.facebook.com/earljustinekent.macias.3" target="_blank" aria-label="Facebook">
-              <svg viewBox="0 0 24 24">
-                <rect x="3" y="5" width="18" height="14" rx="2"/>
-                <path d="m3 7 9 6 9-6"/>
-              </svg>
-            </a>
+          <a class="heroSocial" href="https://github.com/earlmacias2022-tech" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 3.7 5.1 5.1 0 0 0 19.2 0S18 0 15.5 1.7a13.4 13.4 0 0 0-7 0C6 0 4.8 0 4.8 0a5.1 5.1 0 0 0-.1 3.7A5.5 5.5 0 0 0 3.2 7.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 9 18v4"/><path d="M9 18c-4.5 2-5-2-7-2"/></svg>
+          </a>
+          <a class="heroSocial" href="#" aria-label="Instagram placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a>
+          <a class="heroSocial" href="#" aria-label="LinkedIn placeholder"><svg viewBox="0 0 24 24"><path d="M6 9v12"/><path d="M6 6.2v.1"/><path d="M10 21V9"/><path d="M10 13a4 4 0 0 1 8 0v8"/><path d="M2.5 9h7"/></svg></a>
+          <a class="heroSocial" href="https://www.facebook.com/earljustinekent.macias.3" target="_blank" rel="noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
         </div>
       </section>
     </main>
 
     <footer>
-      <span>© All right reserve 2026 </span>
-      <span>Built with &#9829 by Earl Macias</span>
+      <span>© All rights reserved 2026</span>
+      <span>Built with &#9829; by Earl Macias</span>
     </footer>
   </div>
 
@@ -593,20 +429,21 @@
 
       // Mobile menu
       var menuBtn = document.getElementById('menuBtn');
-
-      menuBtn.addEventListener('click', function () {
-        var open = document.body.classList.toggle('nav-open');
-        menuBtn.setAttribute('aria-expanded', open);
-        menuBtn.textContent = open ? 'Close' : 'Menu';
-      });
-
-      document.querySelectorAll('.mobileNav a').forEach(function (a) {
-        a.addEventListener('click', function () {
-          document.body.classList.remove('nav-open');
-          menuBtn.setAttribute('aria-expanded', 'false');
-          menuBtn.textContent = 'Menu';
+      if (menuBtn) {
+        menuBtn.addEventListener('click', function () {
+          var open = document.body.classList.toggle('nav-open');
+          menuBtn.setAttribute('aria-expanded', open);
+          menuBtn.textContent = open ? 'Close' : 'Menu';
         });
-      });
+
+        document.querySelectorAll('.mobileNav a').forEach(function (a) {
+          a.addEventListener('click', function () {
+            document.body.classList.remove('nav-open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.textContent = 'Menu';
+          });
+        });
+      }
 
       // Scroll progress + hero movement
       var progress = document.getElementById('progress');
@@ -620,15 +457,14 @@
 
         requestAnimationFrame(function () {
           var max = document.documentElement.scrollHeight - innerHeight;
-          progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + '%';
+          if (progress) progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + '%';
 
           if (!reduced) {
             parallax();
-
             var sy = scrollY;
             var vh = innerHeight;
 
-            if (sy < vh * 1.2) {
+            if (sy < vh * 1.2 && heroInner && heroGhost) {
               heroInner.style.opacity = String(Math.max(1 - sy / (vh * .8), 0));
               heroInner.style.transform = 'translate3d(0,' + (sy * -.3).toFixed(1) + 'px,0)';
               heroGhost.style.transform = 'translateY(' + (sy * .2).toFixed(1) + 'px)';
@@ -650,40 +486,28 @@
             io.unobserve(entry.target);
           }
         });
-      }, {
-        threshold: .08,
-        rootMargin: '0px 0px -8% 0px'
-      });
+      }, { threshold: .08, rootMargin: '0px 0px -8% 0px' });
 
-      document
-        .querySelectorAll('[data-reveal], [data-stagger], [data-lines]')
-        .forEach(function (el) {
-          io.observe(el);
-        });
+      document.querySelectorAll('[data-reveal], [data-stagger], [data-lines]').forEach(function (el) {
+        io.observe(el);
+      });
 
       // Hero headline animation
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          document
-            .querySelectorAll('.hero h1 .lineMask')
-            .forEach(function (mask) {
-              mask.classList.add('in');
-            });
+          document.querySelectorAll('.hero h1 .lineMask').forEach(function (mask) {
+            mask.classList.add('in');
+          });
         });
       });
 
       // Decorative text parallax
-      var ghosts = Array.prototype.slice.call(
-        document.querySelectorAll('[data-parallax]')
-      );
+      var ghosts = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
 
       function parallax() {
         ghosts.forEach(function (ghost) {
           var rect = ghost.getBoundingClientRect();
-          var offset =
-            (rect.top + rect.height / 2 - innerHeight / 2) *
-            -parseFloat(ghost.dataset.parallax);
-
+          var offset = (rect.top + rect.height / 2 - innerHeight / 2) * -parseFloat(ghost.dataset.parallax);
           ghost.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
         });
       }
@@ -696,7 +520,6 @@
           var el = entry.target;
           var target = parseInt(el.dataset.count, 10);
           var start = null;
-
           cio.unobserve(el);
 
           if (reduced) {
@@ -706,56 +529,43 @@
 
           function step(timestamp) {
             if (!start) start = timestamp;
-
             var progressValue = Math.min((timestamp - start) / 1100, 1);
-            el.textContent = Math.round(
-              target * (1 - Math.pow(1 - progressValue, 3))
-            );
-
-            if (progressValue < 1) {
-              requestAnimationFrame(step);
-            }
+            el.textContent = Math.round(target * (1 - Math.pow(1 - progressValue, 3)));
+            if (progressValue < 1) requestAnimationFrame(step);
           }
 
           requestAnimationFrame(step);
         });
-      }, {
-        threshold: .5
-      });
+      }, { threshold: .5 });
 
-      document.querySelectorAll('[data-count]').forEach(function (el) {
-        cio.observe(el);
-      });
+      document.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
 
       // Pointer interactions
       if (!reduced) {
         var medallion = document.getElementById('medallion');
 
-        medallion.addEventListener('pointermove', function (event) {
-          var rect = medallion.getBoundingClientRect();
-          var x = (event.clientX - rect.left) / rect.width - .5;
-          var y = (event.clientY - rect.top) / rect.height - .5;
+        if (medallion) {
+          medallion.addEventListener('pointermove', function (event) {
+            var rect = medallion.getBoundingClientRect();
+            var x = (event.clientX - rect.left) / rect.width - .5;
+            var y = (event.clientY - rect.top) / rect.height - .5;
+            medallion.style.animationPlayState = 'paused';
+            medallion.style.transform = 'perspective(900px) rotateX(' + (-y * 6) + 'deg) rotateY(' + (x * 8) + 'deg) translateY(-6px)';
+          });
 
-          medallion.style.animationPlayState = 'paused';
-          medallion.style.transform =
-            'perspective(900px) rotateX(' + (-y * 6) + 'deg) ' +
-            'rotateY(' + (x * 8) + 'deg) translateY(-6px)';
-        });
-
-        medallion.addEventListener('pointerleave', function () {
-          medallion.style.transform = '';
-          medallion.style.animationPlayState = 'running';
-        });
+          medallion.addEventListener('pointerleave', function () {
+            medallion.style.transform = '';
+            medallion.style.animationPlayState = 'running';
+          });
+        }
 
         document.querySelectorAll('.tilt').forEach(function (card) {
           card.addEventListener('pointermove', function (event) {
+            if (innerWidth <= 800) return;
             var rect = card.getBoundingClientRect();
             var x = (event.clientX - rect.left) / rect.width - .5;
             var y = (event.clientY - rect.top) / rect.height - .5;
-
-            card.style.transform =
-              'perspective(1000px) rotateX(' + (-y * 2.5) + 'deg) ' +
-              'rotateY(' + (x * 4) + 'deg) translateY(-5px)';
+            card.style.transform = 'perspective(1000px) rotateX(' + (-y * 2.5) + 'deg) rotateY(' + (x * 4) + 'deg) translateY(-5px)';
           });
 
           card.addEventListener('pointerleave', function () {
@@ -768,9 +578,7 @@
             var rect = button.getBoundingClientRect();
             var x = event.clientX - (rect.left + rect.width / 2);
             var y = event.clientY - (rect.top + rect.height / 2);
-
-            button.style.transform =
-              'translate(' + (x * .12) + 'px,' + (y * .12) + 'px)';
+            button.style.transform = 'translate(' + (x * .12) + 'px,' + (y * .12) + 'px)';
           });
 
           button.addEventListener('pointerleave', function () {
