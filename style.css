@@ -313,3 +313,83 @@
       .in .lineMask > .lineIn, .lineMask.in > .lineIn { opacity: 1; }
       .work .tag { transform: none !important; }
     }
+
+    /* ---------- about: personal introduction ---------- */
+    #about .intro {
+      font-size: clamp(2.35rem, 4.6vw, 4.8rem);
+      line-height: 1;
+      letter-spacing: -.04em;
+      max-width: 900px;
+      margin-bottom: 0;
+      min-height: 0;
+    }
+
+    #about .intro .lineMask {
+      display: none;
+    }
+
+    #about .intro::before {
+      content: "I'm Earl Macias.\\A An IT student and developer building practical software while learning every day.";
+      display: block;
+      white-space: pre-line;
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease);
+    }
+
+    #about .intro::after {
+      content: "I enjoy turning ideas into websites, desktop applications, and database-driven systems. Most of my work comes from school, personal projects, and real problems I want to solve.";
+      display: block;
+      max-width: 640px;
+      margin-top: 34px;
+      color: var(--muted);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: clamp(.9rem, 1.25vw, 1.02rem);
+      font-weight: 400;
+      line-height: 1.75;
+      letter-spacing: 0;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .9s .12s var(--ease), transform .9s .12s var(--ease);
+    }
+
+    #about .intro.in::before,
+    #about .intro.in::after {
+      opacity: 1;
+      transform: none;
+    }
+
+    #about .ghost {
+      font-size: clamp(5rem, 13vw, 10rem);
+      color: rgba(17, 17, 17, .014);
+      -webkit-text-stroke-color: rgba(17, 17, 17, .14);
+    }
+
+    #about .facts {
+      margin-top: 74px;
+    }
+
+    #about .fact strong {
+      font-weight: 600;
+    }
+
+    @media (max-width: 800px) {
+      #about .ghost {
+        font-size: clamp(4.5rem, 17vw, 7rem);
+      }
+
+      #about .intro {
+        font-size: clamp(2rem, 8.2vw, 3.4rem);
+      }
+
+      #about .intro::after {
+        margin-top: 26px;
+        font-size: .84rem;
+        line-height: 1.7;
+      }
+
+      #about .facts {
+        margin-top: 56px;
+      }
+    }
