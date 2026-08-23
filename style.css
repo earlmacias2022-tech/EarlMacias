@@ -146,7 +146,20 @@
     }
 
     .pill {
-      padding: 10px 16px;
+      padding: 12px 16px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+    }
+
+     .pill-contact {
+      padding: 15px 35px;
       background: var(--ink);
       color: #fff;
       border-radius: 999px;
@@ -821,23 +834,9 @@
       font-size: .64rem;
     }
 
-    .work:nth-child(2) .workVisual {
-      background: #d8d8d2;
-      color: #111;
-    }
+   
 
-    .work:nth-child(2) .workVisual span {
-      border-color: rgba(17,17,17,.35);
-    }
-
-    .work:nth-child(3) .workVisual {
-      background: #cfd0c7;
-      color: #111;
-    }
-
-    .work:nth-child(3) .workVisual span {
-      border-color: rgba(17,17,17,.35);
-    }
+    
 
     /* ---------- contact ---------- */
 
