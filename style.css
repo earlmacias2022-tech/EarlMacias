@@ -161,9 +161,15 @@
 
     /* ---------- projects ---------- */
     .projects { position: relative; z-index: 2; display: grid; gap: 28px; }
-    .work { display: grid; grid-template-columns: minmax(250px, 1fr) minmax(0, 1.35fr); min-height: 380px; border-top: 1px solid var(--line); padding: 24px 0; gap: 34px; transition: transform .5s var(--ease); }
+    .work { display: grid; grid-template-columns: minmax(250px, 1fr) minmax(0, 1.00fr); min-height: 300px; border-top: 1px solid var(--line); padding: 24px 0; gap: 34px; transition: transform .5s var(--ease); }
     .work:last-child { border-bottom: 1px solid var(--line); }
-    .workInfo { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
+   .workInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+  gap: 32px;
+}
     .num { font-size: .72rem; color: var(--muted); }
     .work h3 { font-size: clamp(2rem, 4vw, 4.2rem); line-height: .95; letter-spacing: -.03em; margin: 12px 0; font-weight: 700; }
     .work p { max-width: 42ch; color: var(--muted); font-size: .8rem; line-height: 1.6; margin-bottom: 24px; }
