@@ -362,8 +362,7 @@
 
     #about .ghost {
       font-size: clamp(5rem, 13vw, 10rem);
-      color: rgba(17, 17, 17, .014);
-      -webkit-text-stroke-color: rgba(17, 17, 17, .14);
+    
     }
 
     #about .facts {
