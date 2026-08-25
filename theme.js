@@ -2,14 +2,20 @@
   "use strict";
 
   var STORAGE_KEY = "earl-portfolio-theme";
-  var root = document.body;
-  if (!root) return;
+
+  function getRoot() {
+    return document.body;
+  }
 
   function isDark() {
-    return root.classList.contains("dark-mode");
+    var root = getRoot();
+    return root ? root.classList.contains("dark-mode") : false;
   }
 
   function setTheme(dark, persist) {
+    var root = getRoot();
+    if (!root) return;
+
     root.classList.toggle("dark-mode", dark);
 
     var toggle = document.getElementById("themeToggle");
@@ -38,16 +44,23 @@
     if (document.getElementById("themeToggle")) return;
 
     var nav = document.querySelector(".nav");
-    var contact = nav ? nav.querySelector(":scope > .pill") : null;
     if (!nav) return;
+
+    var contact = nav.querySelector(":scope > .pill");
 
     var button = document.createElement("button");
     button.type = "button";
     button.id = "themeToggle";
     button.className = "themeToggle";
-    button.setAttribute("aria-pressed", "false");
-    button.setAttribute("aria-label", "Switch to dark mode");
-    button.setAttribute("title", "Switch to dark mode");
+    button.setAttribute("aria-pressed", String(isDark()));
+    button.setAttribute(
+      "aria-label",
+      isDark() ? "Switch to light mode" : "Switch to dark mode",
+    );
+    button.setAttribute(
+      "title",
+      isDark() ? "Switch to light mode" : "Switch to dark mode",
+    );
     button.innerHTML = '<span class="themeIcon" aria-hidden="true"></span>';
 
     if (contact) {
@@ -74,11 +87,15 @@
     setTheme(saved === "dark", false);
   }
 
-  loadSavedTheme();
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", createToggle, { once: true });
-  } else {
+  function initTheme() {
+    loadSavedTheme();
     createToggle();
+  }
+
+  // theme.js is currently loaded in <head>, so wait until <body> exists.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTheme, { once: true });
+  } else {
+    initTheme();
   }
 })();
