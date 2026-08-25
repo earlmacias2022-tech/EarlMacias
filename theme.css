@@ -2,7 +2,6 @@
    Light mode remains the default. Dark mode is activated with body.dark-mode.
 */
 
-/* Theme tokens. These inherit into the existing stylesheet without replacing it. */
 body {
   --theme-bg: #fbfbf8;
   --theme-surface: #ffffff;
@@ -24,60 +23,103 @@ body.dark-mode {
   --theme-ink: #f4f4ee;
   --theme-muted: #a7aaa1;
   --theme-line: #30332f;
-  --theme-nav: rgba(17, 19, 17, 0.86);
+  --theme-nav: rgba(17, 19, 17, 0.88);
   --theme-soft: #0d0f0e;
 }
 
-/* Existing hard-coded light surfaces. */
-body.dark-mode {
-  background: var(--theme-soft);
-}
+body.dark-mode { background: var(--theme-soft); }
+body.dark-mode .site { background: var(--paper); }
+body.dark-mode .nav { background: var(--theme-nav); }
+body.dark-mode .workVisual { background: #1a1d1b !important; }
 
-body.dark-mode .site {
-  background: var(--paper);
-}
-
-body.dark-mode .nav {
-  background: var(--theme-nav);
-}
-
-body.dark-mode .workVisual {
-  background: #1a1d1b !important;
-}
-
-/* Existing decorative SVG presentation attributes are overridden here. */
 body.dark-mode .medallion svg circle,
 body.dark-mode .medallion svg path,
-body.dark-mode .medallion svg rect {
-  stroke: var(--ink);
-}
-
+body.dark-mode .medallion svg rect { stroke: var(--ink); }
 body.dark-mode .medallion svg circle[fill="#111"],
-body.dark-mode .medallion svg circle[fill="#fbfbf8"] {
-  fill: var(--paper);
-}
+body.dark-mode .medallion svg circle[fill="#fbfbf8"] { fill: var(--paper); }
+body.dark-mode .medallion svg circle[fill="#b8ff63"] { fill: var(--accent); }
 
-body.dark-mode .medallion svg circle[fill="#b8ff63"] {
-  fill: var(--accent);
-}
-
-/* Better contrast for the large ghost typography and hero outline. */
-body.dark-mode .heroMark span {
-  -webkit-text-stroke-color: rgba(244, 244, 238, 0.07);
-}
-
+body.dark-mode .heroMark span { -webkit-text-stroke-color: rgba(244,244,238,.07); }
 body.dark-mode .ghost {
-  color: rgba(244, 244, 238, 0.018);
-  -webkit-text-stroke-color: rgba(244, 244, 238, 0.16);
-  text-shadow: 0 0 1px rgba(244, 244, 238, 0.05);
+  color: rgba(244,244,238,.018);
+  -webkit-text-stroke-color: rgba(244,244,238,.16);
+  text-shadow: 0 0 1px rgba(244,244,238,.05);
+}
+body.dark-mode .hero h1 { mix-blend-mode: normal; }
+body.dark-mode .heroSocial { border-color: rgba(244,244,238,.28); }
+
+/* Dark-mode interactive contrast */
+body.dark-mode .pill,
+body.dark-mode .pill-contact {
+  background: #f4f4ee;
+  color: #111311;
+  border-color: #f4f4ee;
+  box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+body.dark-mode .pill:hover,
+body.dark-mode .pill-contact:hover {
+  background: var(--accent);
+  color: #111311;
+  border-color: var(--accent);
+}
+body.dark-mode .pill.ghosted {
+  background: transparent;
+  color: var(--ink);
+  border-color: rgba(244,244,238,.65);
+  box-shadow: none;
+}
+body.dark-mode .pill.ghosted:hover {
+  background: var(--ink);
+  color: #111311;
+  border-color: var(--ink);
+}
+body.dark-mode .menu {
+  color: var(--ink);
+  border-color: rgba(244,244,238,.55);
+}
+body.dark-mode .menu:hover {
+  background: var(--ink);
+  color: #111311;
+}
+body.dark-mode .projectLink,
+body.dark-mode .workVisual .projectLink {
+  background: #f4f4ee;
+  color: #111311;
+  border-color: #f4f4ee;
+}
+body.dark-mode .projectLink:hover,
+body.dark-mode .workVisual .projectLink:hover {
+  background: var(--accent);
+  color: #111311;
+  border-color: var(--accent);
+}
+body.dark-mode .heroSocial:hover {
+  background: var(--ink);
+  color: #111311;
+  border-color: var(--ink);
 }
 
-body.dark-mode .hero h1 {
-  mix-blend-mode: normal;
-}
-
-body.dark-mode .heroSocial {
-  border-color: rgba(244, 244, 238, 0.2);
+/* Navbar: centered links + toggle beside Let's talk */
+@media (min-width: 801px) {
+  .nav {
+    display: grid;
+    grid-template-columns: minmax(240px,1fr) auto minmax(240px,1fr);
+    align-items: center;
+    column-gap: 28px;
+  }
+  .nav > .status { justify-self: start; }
+  .nav > .navlinks { justify-self: center; }
+  .nav > .themeToggle,
+  .nav > .pill { grid-row: 1; }
+  .nav > .pill {
+    grid-column: 3;
+    justify-self: end;
+  }
+  .nav > .themeToggle {
+    grid-column: 3;
+    justify-self: end;
+    margin-right: 136px;
+  }
 }
 
 /* Theme toggle */
@@ -93,27 +135,21 @@ body.dark-mode .heroSocial {
   place-items: center;
   cursor: pointer;
   padding: 0;
-  transition: transform 0.3s var(--ease), background 0.3s, color 0.3s, border-color 0.3s;
+  transition: transform .3s var(--ease), background .3s, color .3s, border-color .3s;
 }
-
 .themeToggle:hover {
   transform: translateY(-2px);
   background: var(--ink);
   color: var(--paper);
   border-color: var(--ink);
 }
-
-.themeToggle:active {
-  transform: translateY(0) scale(0.96);
-}
-
+.themeToggle:active { transform: translateY(0) scale(.96); }
 .themeToggle .themeIcon {
   width: 17px;
   height: 17px;
   position: relative;
   display: block;
 }
-
 .themeToggle .themeIcon::before {
   content: "☀";
   position: absolute;
@@ -123,7 +159,16 @@ body.dark-mode .heroSocial {
   font-size: 15px;
   line-height: 1;
 }
-
+body.dark-mode .themeToggle {
+  background: transparent;
+  color: var(--ink);
+  border-color: rgba(244,244,238,.55);
+}
+body.dark-mode .themeToggle:hover {
+  background: var(--accent);
+  color: #111311;
+  border-color: var(--accent);
+}
 body.dark-mode .themeToggle .themeIcon::before {
   content: "☾";
   font-size: 18px;
@@ -138,7 +183,5 @@ body.dark-mode .themeToggle .themeIcon::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .themeToggle {
-    transition: none;
-  }
+  .themeToggle { transition: none; }
 }
