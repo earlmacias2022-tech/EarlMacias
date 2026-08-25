@@ -1,0 +1,144 @@
+/* Theme layer for the Earl Macias portfolio.
+   Light mode remains the default. Dark mode is activated with body.dark-mode.
+*/
+
+/* Theme tokens. These inherit into the existing stylesheet without replacing it. */
+body {
+  --theme-bg: #fbfbf8;
+  --theme-surface: #ffffff;
+  --theme-ink: #111111;
+  --theme-muted: #5f5f58;
+  --theme-line: #d8d8d1;
+  --theme-nav: rgba(251, 251, 248, 0.86);
+  --theme-soft: #e9e9e5;
+}
+
+body.dark-mode {
+  --paper: #111311;
+  --ink: #f4f4ee;
+  --muted: #a7aaa1;
+  --line: #30332f;
+  --dark: #0b0d0c;
+  --theme-bg: #111311;
+  --theme-surface: #181b19;
+  --theme-ink: #f4f4ee;
+  --theme-muted: #a7aaa1;
+  --theme-line: #30332f;
+  --theme-nav: rgba(17, 19, 17, 0.86);
+  --theme-soft: #0d0f0e;
+}
+
+/* Existing hard-coded light surfaces. */
+body.dark-mode {
+  background: var(--theme-soft);
+}
+
+body.dark-mode .site {
+  background: var(--paper);
+}
+
+body.dark-mode .nav {
+  background: var(--theme-nav);
+}
+
+body.dark-mode .workVisual {
+  background: #1a1d1b !important;
+}
+
+/* Existing decorative SVG presentation attributes are overridden here. */
+body.dark-mode .medallion svg circle,
+body.dark-mode .medallion svg path,
+body.dark-mode .medallion svg rect {
+  stroke: var(--ink);
+}
+
+body.dark-mode .medallion svg circle[fill="#111"],
+body.dark-mode .medallion svg circle[fill="#fbfbf8"] {
+  fill: var(--paper);
+}
+
+body.dark-mode .medallion svg circle[fill="#b8ff63"] {
+  fill: var(--accent);
+}
+
+/* Better contrast for the large ghost typography and hero outline. */
+body.dark-mode .heroMark span {
+  -webkit-text-stroke-color: rgba(244, 244, 238, 0.07);
+}
+
+body.dark-mode .ghost {
+  color: rgba(244, 244, 238, 0.018);
+  -webkit-text-stroke-color: rgba(244, 244, 238, 0.16);
+  text-shadow: 0 0 1px rgba(244, 244, 238, 0.05);
+}
+
+body.dark-mode .hero h1 {
+  mix-blend-mode: normal;
+}
+
+body.dark-mode .heroSocial {
+  border-color: rgba(244, 244, 238, 0.2);
+}
+
+/* Theme toggle */
+.themeToggle {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.3s var(--ease), background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.themeToggle:hover {
+  transform: translateY(-2px);
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.themeToggle:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.themeToggle .themeIcon {
+  width: 17px;
+  height: 17px;
+  position: relative;
+  display: block;
+}
+
+.themeToggle .themeIcon::before {
+  content: "☀";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  line-height: 1;
+}
+
+body.dark-mode .themeToggle .themeIcon::before {
+  content: "☾";
+  font-size: 18px;
+}
+
+@media (max-width: 800px) {
+  .themeToggle {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .themeToggle {
+    transition: none;
+  }
+}
