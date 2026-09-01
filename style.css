@@ -58,7 +58,7 @@
     }
     .status { display: flex; align-items: center; gap: 8px; font-size: .72rem; font-weight: 500; }
     .status i { width: 7px; height: 7px; border-radius: 50%; background: #42ba60; animation: pulse 2s infinite; }
-    .navlinks { display: flex; gap: 30px; font-size: .74rem; color: var(--muted); }
+    .navlinks { display: flex; gap: 30px; font-size: .82rem; color: var(--muted); }
     .navlinks a { transition: color .2s; position: relative; }
     .navlinks a::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 100%; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: right; transition: transform .3s var(--ease); }
     .navlinks a:hover { color: var(--ink); }
@@ -153,11 +153,37 @@
     .dark { background: var(--dark); color: #fff; border-top: 0; }
     .dark .ghost { color: rgba(255, 255, 255, .02); -webkit-text-stroke-color: rgba(255, 255, 255, .2); }
     .timeline { border-top: 1px solid #444; position: relative; z-index: 2; }
-    .row { display: grid; grid-template-columns: 1.2fr 1fr auto; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid #3b3b3a; transition: padding .35s var(--ease), background .35s; }
-    .row:hover { padding-left: 12px; background: rgba(255, 255, 255, .04); }
-    .row strong { font-size: .95rem; }
-    .row span { font-size: .74rem; color: #b5b5ae; }
-    .row em { font-style: normal; font-size: .72rem; color: #c9c9c2; text-align: right; }
+   .row {
+  display: grid;
+  grid-template-columns: 1.2fr 100px 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 1px solid #3b3b3a;
+  transition: padding .35s var(--ease), background .35s;
+}
+
+.row:hover {
+  padding-left: 12px;
+  background: rgba(255, 255, 255, .04);
+}
+
+.row strong {
+  font-size: .95rem;
+}
+
+.row span {
+  font-size: .74rem;
+  color: #b5b5ae;
+  text-align: center;
+}
+
+.row em {
+  font-style: normal;
+  font-size: .72rem;
+  color: #c9c9c2;
+  text-align: right;
+}
 
     /* ---------- projects ---------- */
     .projects { position: relative; z-index: 2; display: grid; gap: 28px; }
@@ -329,7 +355,7 @@
     }
 
     #about .intro::before {
-      content: "I'm Earl Macias.\\A An IT student and developer building practical software while learning every day.";
+      content: "I'm Earl Macias. An IT student and developer building practical software while learning every day.";
       display: block;
       white-space: pre-line;
       max-width: 900px;
