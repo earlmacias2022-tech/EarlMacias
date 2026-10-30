@@ -136,7 +136,7 @@
     .service strong { font-size: clamp(1.9rem, 4vw, 3.8rem); letter-spacing: -.03em; font-weight: 700; transition: letter-spacing .35s var(--ease); }
     .service small { font-size: .72rem; color: var(--muted); display: block; margin-top: 4px; }
     .service .arrow { font-size: 1.1rem; display: inline-block; transition: transform .3s var(--ease); }
-    .service:hover { padding-left: 16px; background: rgba(184, 255, 99, .1); }
+   .service:hover { padding-left: 16px; background: rgba(17, 17, 17, .025); }
     .service:hover strong { letter-spacing: -.01em; }
     .service:hover .arrow { transform: translate(4px, -4px); }
     .skillsMeta { display: flex; justify-content: space-between; align-items: baseline; margin-top: 40px; position: relative; z-index: 2; }
