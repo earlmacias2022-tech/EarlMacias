@@ -355,7 +355,7 @@
     }
 
     #about .intro::before {
-      content: "I'm Earl Macias. An IT student and developer building practical software while learning every day.";
+      content: "I'm Earl Macias, the developer behind EarlDevx. I'm an Information Technology student who enjoys turning ideas into practical digital solutions.";
       display: block;
       white-space: pre-line;
       max-width: 900px;
@@ -365,7 +365,7 @@
     }
 
     #about .intro::after {
-      content: "I enjoy turning ideas into websites, desktop applications, and database-driven systems. Most of my work comes from school, personal projects, and real problems I want to solve.";
+      content: "I work with web technologies, C and C#, and SQL databases. I enjoy building responsive websites, exploring desktop application development, and improving through hands-on projects. I'm always learning, testing new ideas, and finding better ways to solve problems with technology.";
       display: block;
       max-width: 640px;
       margin-top: 34px;
@@ -724,3 +724,21 @@ body.dark-mode #skills .service:hover {
 footer {
   --accent: #b8ff63;
 }
+
+
+/* ---------- EarlDevx branded footer ---------- */
+.siteFooter{display:block;padding:52px clamp(20px,5vw,76px) 20px;background:#20201f;color:#aaa9a1;border-top:1px solid #41413d}
+.footerTop{display:grid;grid-template-columns:minmax(190px,1.2fr) minmax(160px,.8fr) minmax(220px,1fr);gap:38px;align-items:start;padding-bottom:42px}
+.footerBrand{max-width:280px}
+.footerLogo{display:inline-block;color:#f4f2eb;font-family:"Space Grotesk",sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:-.07em}
+.footerLogo span{color:#b8ff63}
+.footerBrand p{margin:12px 0 0;color:#aaa9a1;font-size:.78rem;line-height:1.7}
+.footerNav,.footerSocials{display:flex;flex-wrap:wrap;gap:13px 20px}
+.footerNav{flex-direction:column;align-items:flex-start}
+.footerNav a,.footerSocials a{color:#c6c5bd;font-size:.72rem;transition:color .2s ease}
+.footerNav a:hover,.footerSocials a:hover,.footerBottom a:hover{color:#b8ff63}
+.footerSocials{align-content:flex-start}
+.footerBottom{display:flex;justify-content:space-between;gap:16px;padding-top:18px;border-top:1px solid #41413d;color:#85847d;font-size:.65rem}
+.footerBottom a{color:#b8ff63}
+@media(max-width:800px){.siteFooter{padding-top:38px}.footerTop{grid-template-columns:1fr 1fr;gap:30px 22px}.footerBrand{grid-column:1/-1}.footerSocials{gap:12px 16px}.footerBottom{flex-direction:column;gap:10px}}
+@media(max-width:480px){.footerTop{grid-template-columns:1fr}.footerBrand{grid-column:auto}.footerSocials{max-width:280px}}
