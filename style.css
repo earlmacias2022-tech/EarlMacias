@@ -418,3 +418,66 @@
         margin-top: 56px;
       }
     }
+
+
+/* ---------- restrained lime accents: dark sections only ---------- */
+#journey .timeline {
+  border-top-color: rgba(184, 255, 99, .32);
+}
+
+#journey .row {
+  transition: padding .35s var(--ease), background .35s, border-color .35s;
+}
+
+#journey .row:hover {
+  background: rgba(184, 255, 99, .06);
+  border-bottom-color: rgba(184, 255, 99, .35);
+}
+
+#journey .row span {
+  color: #b8ff63;
+}
+
+/* Certifications */
+.certifications {
+  background: #20201f;
+  color: #f4f2eb;
+}
+
+.certifications .ghost {
+  color: rgba(255, 255, 255, .02);
+  -webkit-text-stroke-color: rgba(255, 255, 255, .2);
+}
+
+
+
+/* Footer remains a dark closing section in both color themes. */
+footer {
+  background: #20201f;
+  color: #aaa9a1;
+  border-top-color: #41413d;
+}
+
+footer span:last-child {
+  color: #b8ff63;
+}
+
+@media (max-width: 800px) {
+  .certHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+
+  .certificateGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificatePreview {
+    min-height: 190px;
+  }
+
+  .certificateInfo p {
+    min-height: 0;
+  }
+}
