@@ -22,7 +22,7 @@ Modern, clean, technical, confident, and student-focused.
 Inspired by the supplied reference: editorial portfolio layout, warm off-white surfaces, black typography, outlined oversized display text, restrained borders, pill controls, and a dark closing CTA. Use the reference for hierarchy, spacing, composition, and tone rather than copying it.
 
 ## Page Structure
-Home → About → Skills → Selected Work → Contact → Footer.
+Home → About → Skills → Journey → Selected Work → Certifications → Contact → Footer.
 
 ## Copy Direction
 Short, direct, specific copy. Position Earl as an IT Student & Developer. Primary CTA: View My Projects. Secondary CTA: Contact Me.
@@ -47,3 +47,9 @@ Keep the site as one self-contained `index.html`. Highlight HTML/CSS, JavaScript
 - Full motion pass: scroll progress bar, parallax ghost headings, masked line-by-line headline reveals, per-section entrance choreography, skills marquee, count-up stat, tilt cards, magnetic buttons. All disabled under `prefers-reduced-motion`.
 - Themed browser surfaces: custom scrollbar, text selection color, focus-visible rings.
 - Display face is Space Grotesk (Google Fonts) with Inter for body copy.
+
+
+## Certifications Section
+- Added three certificate cards: HTML Essentials, CSS Essentials, and Prompt Like an Engineer.
+- Certificate PDF files are currently hosted in the companion HTML/CSS activity repository and opened through direct links.
+- Lime accent color (#b8ff63) is limited to the dark Journey, Certifications, and Footer sections.
