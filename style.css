@@ -3,7 +3,7 @@
       --ink: #111;
       --muted: #5f5f58;
       --line: #d8d8d1;
-      --accent: #b8ff63;
+      --accent: #d8d8d1;
       --dark: #20201f;
       --nav: 72px;
       --ease: cubic-bezier(.19,1,.22,1);
@@ -15,7 +15,7 @@
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--paper); }
     ::-webkit-scrollbar-thumb { background: var(--ink); border: 3px solid var(--paper); border-radius: 8px; }
-    ::selection { background: var(--accent); color: var(--ink); }
+    ::selection { background: #d8d8d1; color: #111; }
     :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
 
     body {
@@ -449,6 +449,233 @@
   -webkit-text-stroke-color: rgba(255, 255, 255, .2);
 }
 
+.certHeading {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 28px;
+  margin: 30px 0 42px;
+}
+
+.certEyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #b8ff63;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+}
+
+.certHeading p {
+  max-width: 600px;
+  margin: 0;
+  color: #b7b6ae;
+  font-size: .9rem;
+  line-height: 1.7;
+}
+
+.certCount {
+  flex-shrink: 0;
+  color: #b8ff63;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: .9;
+}
+
+.certCount small {
+  display: block;
+  margin-top: 9px;
+  color: #aaa9a1;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+}
+
+.certificateGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.certificateCard {
+  min-width: 0;
+  overflow: hidden;
+  background: #292927;
+  border: 1px solid #41413d;
+  transition: transform .35s var(--ease), border-color .35s var(--ease);
+}
+
+.certificateCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(184, 255, 99, .65);
+}
+
+.certificatePreview {
+  min-height: 210px;
+  padding: 22px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #f4f2eb;
+  color: #20201f;
+  text-align: center;
+}
+
+.certificatePreview::before,
+.certificatePreview::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border: 1px solid rgba(32, 32, 31, .12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.certificatePreview::before {
+  top: -100px;
+  left: -70px;
+}
+
+.certificatePreview::after {
+  right: -90px;
+  bottom: -110px;
+  width: 210px;
+  height: 210px;
+}
+
+.certificateType {
+  color: #66665f;
+  font-size: .52rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+}
+
+.certificatePreviewTitle {
+  margin-top: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.7rem);
+  font-weight: 700;
+  letter-spacing: -.06em;
+}
+
+.certificatePreviewRule {
+  width: 44px;
+  height: 3px;
+  margin: 12px 0;
+  background: #8bcf3f;
+}
+
+.certificatePreviewName {
+  color: #66665f;
+  font-size: .68rem;
+}
+
+.certificatePreviewCorner {
+  position: absolute;
+  right: 16px;
+  bottom: 13px;
+  color: #77776f;
+  font-size: .62rem;
+}
+
+.certificateInfo {
+  padding: 22px;
+}
+
+.certificateMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #b8ff63;
+  font-size: .55rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+}
+
+.certificateMeta span:last-child {
+  color: #99988f;
+}
+
+.certificateInfo h3 {
+  margin: 22px 0 9px;
+  color: #f4f2eb;
+  font-size: 1.3rem;
+  letter-spacing: -.03em;
+}
+
+.certificateInfo p {
+  min-height: 52px;
+  margin: 0 0 22px;
+  color: #aaa9a1;
+  font-size: .76rem;
+  line-height: 1.65;
+}
+
+.certificateLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(184, 255, 99, .65);
+  color: #f4f2eb;
+  font-size: .72rem;
+  transition: color .2s ease, gap .2s ease;
+}
+
+.certificateLink span {
+  color: #b8ff63;
+}
+
+.certificateLink:hover {
+  gap: 17px;
+  color: #b8ff63;
+}
+
+@media (max-width: 900px) {
+  .certificateGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .certHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+
+  .certificateGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificatePreview {
+    min-height: 190px;
+  }
+
+  .certificateInfo p {
+    min-height: 0;
+  }
+}
+
+::selection {
+  background: #d8d8d1;
+  color: #111;
+}
+
+#skills .service:hover {
+  background: rgba(17, 17, 17, .025);
+}
+
 
 
 /* Footer remains a dark closing section in both color themes. */
@@ -480,4 +707,20 @@ footer span:last-child {
   .certificateInfo p {
     min-height: 0;
   }
+}
+
+
+/* Keep lime accents limited to the dark portfolio sections. */
+#skills .service:hover {
+  background: rgba(17, 17, 17, .025);
+}
+
+body.dark-mode #skills .service:hover {
+  background: rgba(255, 255, 255, .04);
+}
+
+#journey,
+#certifications,
+footer {
+  --accent: #b8ff63;
 }
